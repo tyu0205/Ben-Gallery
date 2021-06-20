@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="grid_card_corner">4dp</dimen>
+    <dimen name="grid_photo_margin">9dp</dimen>
+    <dimen name="grid_photo_padding">10dp</dimen>
+    <dimen name="grid_photo_corner">6dp</dimen>
+    <dimen name="grid_photo_elevation">5dp</dimen>
+    <dimen name="detail_photo_height">450dp</dimen>
+    <dimen name="detail_title_size">35sp</dimen>
+    <dimen name="detail_description_size">20sp</dimen>
+</resources>
