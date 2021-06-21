@@ -30,12 +30,15 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/detail_photo_height"
+                android:layout_marginBottom="5dp"
                 android:paddingVertical="@dimen/grid_photo_padding"
                 android:paddingStart="@dimen/grid_photo_padding"
                 android:paddingEnd="@dimen/grid_photo_padding"
+                app:layout_constraintBottom_toTopOf="@+id/author_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
                 bind:loadImage="@{photo.urls.regular}" />
 
             <TextView
@@ -50,9 +53,11 @@
                 android:gravity="left"
                 android:padding="@dimen/grid_photo_padding"
                 android:paddingBottom="@dimen/grid_photo_padding"
+                android:scrollbars="vertical"
                 android:text="@{`By ` + photo.user.name}"
                 android:textColor="@color/card_titleColor"
                 android:textSize="@dimen/detail_title_size"
+                app:layout_constraintBottom_toTopOf="@+id/description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -60,14 +65,16 @@
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/grid_photo_margin"
                 android:layout_marginEnd="@dimen/grid_photo_margin"
+                android:layout_marginBottom="5dp"
                 android:gravity="left"
                 android:padding="@dimen/grid_photo_padding"
                 android:text="@{photo.description}"
                 android:textColor="@color/card_descriptionColor"
                 android:textSize="@dimen/detail_description_size"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/author_name" />

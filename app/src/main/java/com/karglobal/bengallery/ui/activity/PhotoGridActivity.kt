@@ -32,7 +32,7 @@ class PhotoGridActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViews()
-        initViewModelObserver();
+        initViewModelObserver()
         loadDataFromUnsPlashAPI(null)
     }
 
@@ -62,7 +62,7 @@ class PhotoGridActivity : AppCompatActivity() {
         })
 
         photoViewModel.errorMessage().observe(this, Observer {
-            binding.photoLoadingError.setText("$it")
+            binding.photoLoadingError.text = "$it"
             binding.photoLoadingError.isVisible = true
             binding.btnRetry.isVisible = true
             Log.e(logTag, "error message $it")
@@ -97,7 +97,7 @@ class PhotoGridActivity : AppCompatActivity() {
         this.setExitSharedElementCallback(callback)
 
         // Listen for the transition end and clear all registered callback
-        this.getWindow().getSharedElementExitTransition()
+        this.window.sharedElementExitTransition
             .addListener(object : Transition.TransitionListener {
                 override fun onTransitionStart(transition: Transition?) {}
                 override fun onTransitionPause(transition: Transition?) {}
@@ -112,7 +112,7 @@ class PhotoGridActivity : AppCompatActivity() {
 
                 private fun removeCallback() {
                     if (this != null) {
-                        getWindow().getSharedElementExitTransition()
+                        window.sharedElementExitTransition
                             .removeListener(this)
                         setExitSharedElementCallback(null as SharedElementCallback?)
                     }
@@ -124,16 +124,16 @@ class PhotoGridActivity : AppCompatActivity() {
 
         // Listen for the RecyclerView pre draw to make sure the selected view is visible,
         //  and findViewHolderForAdapterPosition will return a non null ViewHolder
-        binding.photoGridRecycler.getViewTreeObserver()
+        binding.photoGridRecycler.viewTreeObserver
             .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
-                    binding.photoGridRecycler.getViewTreeObserver().removeOnPreDrawListener(this)
+                    binding.photoGridRecycler.viewTreeObserver.removeOnPreDrawListener(this)
                     val holder: RecyclerView.ViewHolder? =
                         binding.photoGridRecycler.findViewHolderForAdapterPosition(
                             currentPositionIndex
                         )
                     if (holder is PhotoGridAdapter.ViewHolder) {
-                        callback.setView((holder as PhotoGridAdapter.ViewHolder).itemView)
+                        callback.setView(holder.itemView)
                     }
 
                     // Continue the transition

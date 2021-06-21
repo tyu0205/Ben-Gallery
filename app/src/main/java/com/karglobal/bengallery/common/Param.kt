@@ -6,7 +6,7 @@ class Param {
      */
     companion object {
         var PAGE_NUM = 1
-        val PER_PAGE = 5 //Maximum items per page is 30
-        val MAX_PAGE_NUM = 2
+        val PER_PAGE = 30 //Maximum items per page is 30
+        val MAX_PAGE_NUM = 20
     }
 }

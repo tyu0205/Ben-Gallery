@@ -23,7 +23,7 @@ class PhotoGridAdapter(activity: Activity) : RecyclerView.Adapter<PhotoGridAdapt
     private var activity: Activity = activity
 
     fun setData(data: List<PhotoModel>) {
-        dataSet = data;
+        dataSet = data
 
     }
 
@@ -66,7 +66,7 @@ class PhotoGridAdapter(activity: Activity) : RecyclerView.Adapter<PhotoGridAdapt
                         .makeSceneTransitionAnimation(
                             activity,
                             root,
-                            activity.getResources().getString(R.string.photo_transition))
+                            activity.resources.getString(R.string.photo_transition))
                     intent.putExtra(CURRENT_PHOTO_POSITION, adapterPosition)
 
                     // start the detail activity

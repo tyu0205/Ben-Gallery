@@ -26,7 +26,7 @@ object APIModule {
                 .addConverterFactory(GsonConverterFactory.create()).client(basicOkHttpClient())
                 .baseUrl(BuildConfig.UNSPLASH_URL)
                 .build()
-            return retrofit.create(UnsplashAPI::class.java);
+            return retrofit.create(UnsplashAPI::class.java)
         }
 
         single { provideUnsplashAPIService() }
