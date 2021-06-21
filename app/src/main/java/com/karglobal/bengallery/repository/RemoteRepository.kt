@@ -16,7 +16,7 @@ class RemoteRepository(private val api: UnsplashAPI, private val context: Contex
     fun getListPhotos(): List<PhotoModel> = photosCache
 
     /**
-     * override the getPhotos method, this method will fetch random photos from Unsplash API
+     * override the getPhotos method, this method will fetch random photos from Unsplash API and store them into cache
      */
     override suspend fun getPhotos(): List<PhotoModel> {
         if (isOnline(context)) {

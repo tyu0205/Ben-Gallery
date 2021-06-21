@@ -6,6 +6,9 @@ import com.karglobal.bengallery.repository.RemoteRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
+/**
+ * Here is the module for creating a remote repository
+ */
 object RemoteRepositoryModule {
     val remoteRepositoryModule = module {
 

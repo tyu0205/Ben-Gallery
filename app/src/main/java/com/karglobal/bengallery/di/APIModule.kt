@@ -8,6 +8,9 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Here is the network module to connect Unsplash API
+ */
 object APIModule {
 
     val apiModule = module {
@@ -17,7 +20,6 @@ object APIModule {
         }
 
         fun basicOkHttpClient() = OkHttpClient.Builder().addInterceptor(httpInterceptor()).build()
-
 
         fun provideUnsplashAPIService(): UnsplashAPI {
             val retrofit = Retrofit.Builder()

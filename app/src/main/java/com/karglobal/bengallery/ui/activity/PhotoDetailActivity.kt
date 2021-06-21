@@ -1,9 +1,8 @@
 package com.karglobal.bengallery.ui.activity
 
-import android.annotation.TargetApi
+
 import android.app.SharedElementCallback
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -22,6 +21,8 @@ class PhotoDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPhotoDetailLayoutBinding
     private val remoteRepository by inject<RemoteRepository>()
+
+    //Custom shared element callback to help transition go to the correct location
     private val mFinishSharedElementCallback: SharedElementCallback =
         object : SharedElementCallback() {
             override fun onMapSharedElements(
@@ -42,17 +43,20 @@ class PhotoDetailActivity : AppCompatActivity() {
             }
         }
 
-    private fun getSelectedView(): View? {
-        return try {
-            binding.viewPager.findViewWithTag("PhotoItem" + binding.viewPager.currentItem)
-        } catch (ex: IndexOutOfBoundsException) {
-            null
-        } catch (ex: NullPointerException) {
-            null
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initViews()
+        //go to the right location in the pager
+        Handler(Looper.getMainLooper()).post {
+            binding.viewPager.setCurrentItem(intent.getIntExtra(CURRENT_PHOTO_POSITION, 0), false)
+        }
+
+    }
+
+    /**
+     * using data binding to connect views
+     */
+    private fun initViews() {
         binding = ActivityPhotoDetailLayoutBinding.inflate(layoutInflater)
         binding.apply {
             lifecycleOwner = this@PhotoDetailActivity
@@ -60,13 +64,9 @@ class PhotoDetailActivity : AppCompatActivity() {
 
         }
         setContentView(binding.root)
-
-        Handler(Looper.getMainLooper()).post({
-            binding.viewPager.setCurrentItem(intent.getIntExtra(CURRENT_PHOTO_POSITION, 0), false)
-        })
-
     }
 
+    //return current location to the caller
     override fun finishAfterTransition() {
         setEnterSharedElementCallback(mFinishSharedElementCallback)
         val intent = Intent()
@@ -79,5 +79,15 @@ class PhotoDetailActivity : AppCompatActivity() {
             intent
         )
         super.finishAfterTransition()
+    }
+
+    private fun getSelectedView(): View? {
+        return try {
+            binding.viewPager.findViewWithTag("PhotoItem" + binding.viewPager.currentItem)
+        } catch (ex: IndexOutOfBoundsException) {
+            null
+        } catch (ex: NullPointerException) {
+            null
+        }
     }
 }

@@ -7,7 +7,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.karglobal.bengallery.ui.adapters.PhotoDetailPagerAdapter
 
-
+/**
+ * Here are the data binding configurations
+ */
 @BindingAdapter("loadImage")
 fun bindingImage(photo: ImageView, url: String?) {
     Glide.with(photo.context)
