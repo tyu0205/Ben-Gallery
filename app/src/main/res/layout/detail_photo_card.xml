@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="photo"
+            type="com.karglobal.bengallery.model.PhotoModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/grid_photo_margin"
+        android:transitionName="@string/photo_transition"
+        app:cardCornerRadius="@dimen/grid_photo_corner"
+        app:cardElevation="@dimen/grid_photo_elevation">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_backgroundColor"
+            tools:context=".ui.activities.PhotoGridActivity">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_photo_height"
+                android:paddingVertical="@dimen/grid_photo_padding"
+                android:paddingStart="@dimen/grid_photo_padding"
+                android:paddingEnd="@dimen/grid_photo_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:loadImage="@{photo.urls.regular}" />
+
+            <TextView
+                android:id="@+id/author_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/grid_photo_margin"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/grid_photo_margin"
+                android:fontFamily="@font/roboto_black"
+                android:foregroundGravity="left"
+                android:gravity="left"
+                android:padding="@dimen/grid_photo_padding"
+                android:paddingBottom="@dimen/grid_photo_padding"
+                android:text="@{`By ` + photo.user.name}"
+                android:textColor="@color/card_titleColor"
+                android:textSize="@dimen/detail_title_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/grid_photo_margin"
+                android:layout_marginEnd="@dimen/grid_photo_margin"
+                android:gravity="left"
+                android:padding="@dimen/grid_photo_padding"
+                android:text="@{photo.description}"
+                android:textColor="@color/card_descriptionColor"
+                android:textSize="@dimen/detail_description_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/author_name" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,6 +1,8 @@
 package com.karglobal.bengallery.ui.adapters
 
 import android.app.Activity
+import android.app.ActivityOptions
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -8,8 +10,11 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.karglobal.bengallery.R
+import com.karglobal.bengallery.common.NameSpace.Companion.CURRENT_PHOTO_POSITION
+import com.karglobal.bengallery.common.NameSpace.Companion.PHOTO_POSITION_REQUEST_CODE
 import com.karglobal.bengallery.databinding.GridPhotoCardBinding
 import com.karglobal.bengallery.model.PhotoModel
+import com.karglobal.bengallery.ui.activity.PhotoDetailActivity
 import kotlin.collections.ArrayList
 
 class PhotoGridAdapter(activity: Activity) : RecyclerView.Adapter<PhotoGridAdapter.ViewHolder>() {
@@ -55,8 +60,18 @@ class PhotoGridAdapter(activity: Activity) : RecyclerView.Adapter<PhotoGridAdapt
             binding.apply {
                 photo = item
                 executePendingBindings()
-                root.setOnClickListener {
-                    Toast.makeText(activity, item.urls.small, Toast.LENGTH_LONG).show()
+                binding.gridPhotoCardView.setOnClickListener {
+                    var intent = Intent(activity, PhotoDetailActivity::class.java)
+                    val options = ActivityOptions
+                        .makeSceneTransitionAnimation(
+                            activity,
+                            root,
+                            activity.getResources().getString(R.string.photo_transition))
+                    intent.putExtra(CURRENT_PHOTO_POSITION, adapterPosition)
+
+                    // start the detail activity
+                    activity.startActivityForResult(intent, PHOTO_POSITION_REQUEST_CODE, options.toBundle())
+//                    Toast.makeText(activity, item.urls.small, Toast.LENGTH_LONG).show()
 
                 }
             }
