@@ -141,13 +141,10 @@ class PhotoGridActivity : AppCompatActivity() {
                     return true
                 }
             })
-
-        //getters go here
-        fun getCurrentPosition(): Int = currentPositionIndex
     }
 
-
-
+    //getters go here
+    fun getCurrentPosition(): Int = currentPositionIndex
 
     /**
      * Custom shared element callback to help transition go to the correct location
