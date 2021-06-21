@@ -25,7 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             bind:loadPageAdapter="@{adapter}">
         </androidx.viewpager2.widget.ViewPager2>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

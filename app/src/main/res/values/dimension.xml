@@ -6,6 +6,7 @@
     <dimen name="grid_photo_corner">6dp</dimen>
     <dimen name="grid_photo_elevation">5dp</dimen>
     <dimen name="detail_photo_height">400dp</dimen>
+    <dimen name="detail_photo_width">300dp</dimen>
     <dimen name="detail_title_size">30sp</dimen>
     <dimen name="detail_description_size">17sp</dimen>
 </resources>
