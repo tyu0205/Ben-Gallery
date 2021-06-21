@@ -6,11 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.karglobal.bengallery.common.NameSpace.Companion.CURRENT_PHOTO_POSITION
 import com.karglobal.bengallery.common.NameSpace.Companion.PHOTO_POSITION_REQUEST_CODE
+import com.karglobal.bengallery.common.NameSpace.Companion.POSITION_STATE
 import com.karglobal.bengallery.databinding.ActivityPhotoDetailLayoutBinding
 import com.karglobal.bengallery.repository.RemoteRepository
 import com.karglobal.bengallery.ui.adapters.PhotoDetailPagerAdapter
@@ -79,6 +81,19 @@ class PhotoDetailActivity : AppCompatActivity() {
             intent
         )
         super.finishAfterTransition()
+    }
+
+    //saving position state for handling orientation
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(POSITION_STATE, binding.viewPager.currentItem)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Handler(Looper.getMainLooper()).post {
+            binding.viewPager.setCurrentItem(savedInstanceState.getInt(POSITION_STATE, 0), false)
+        }
     }
 
     private fun getSelectedView(): View? {

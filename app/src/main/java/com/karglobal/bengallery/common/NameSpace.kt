@@ -7,5 +7,6 @@ class NameSpace {
     companion object {
         val CURRENT_PHOTO_POSITION = "current_photo_location"
         val PHOTO_POSITION_REQUEST_CODE = 100
+        val POSITION_STATE = "position_state"
     }
 }
